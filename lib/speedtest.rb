@@ -126,7 +126,7 @@ module Speedtest
 	    orig = GeoPoint.new(lat, lon)
 	    log "Your IP: #{ip}\nYour coordinates: #{orig}\n"
 
-	    page = HTTParty.get("http://www.speedtest.net/speedtest-servers.php")
+	    page = HTTParty.get("http://c.speedtest.net/speedtest-servers-static.php")
 	    sorted_servers=page.body.scan(/<server url="([^"]*)" lat="([^"]*)" lon="([^"]*)/).map { |x| {
 	      :distance => orig.distance(GeoPoint.new(x[1],x[2])),
 	      :url => x[0].split(/(http:\/\/.*)\/speedtest.*/)[1]
